@@ -1,0 +1,9 @@
+{
+    "blog": {
+        "readmore": "Lire la suite",
+        "name": "Blog de Florentin Duyck",  
+        "articles": "Articles",
+        "categories": "Catégories",
+        "allArticles": "Tous les articles"
+    }
+}

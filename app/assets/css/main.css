@@ -1,1 +1,19 @@
 @import "tailwindcss";
+
+@theme {
+  --font-body: 'B612 Mono', monospace;
+  --font-heading: 'Chakra Petch', sans-serif;
+
+  --color-primary-background: #18111B;
+  --color-secondary-background: #1E1523;
+  --color-normal-component-background: #301C3B;
+  --color-hover-component-background: #3D224E;
+  --color-pressed-component-background: #48295C;
+  --color-fixed-border: #54346B;
+  --color-interactive-border: #664282;
+  --color-stronger-interactive-border: #8457AA;
+  --color-primary-solid-background: #8E4EC6;
+  --color-secondary-solid-background: #9A5CD0;
+  --color-primary-text: #ECD9FA;
+  --color-secondary-text: #D19DFF;
+}
