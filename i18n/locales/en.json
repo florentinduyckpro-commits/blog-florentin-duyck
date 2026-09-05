@@ -1,9 +1,17 @@
 {
     "blog": {
-        "readmore": "Read more",
+        "readmore": "Read more →",
         "name": "Florentin Duyck's Blog",
         "articles": "Articles",
         "categories": "Categories",
-        "allArticles": "All articles"
+        "allArticles": "All articles",
+        "lastArticles": "Last articles",
+        "notfound": "No articles found",
+        "switchToEnglish": "Switch to English",
+        "switchToFrench": "Switch to French",
+        "readTime": "{time} min",
+        "searchLabel": "Search blog posts",
+        "searchPlaceholder": "Search blog posts...",
+        "seoDescription": "A technical blog about Vue.js, Nuxt, freelancing, and building digital projects."
     }
 }

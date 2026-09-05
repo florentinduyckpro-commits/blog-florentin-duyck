@@ -1,15 +1,15 @@
 <template>
-    <div class="flex flex-col gap-5 px-100 py-10">
+    <div class="flex flex-col gap-5 w-full max-w-5xl mx-auto px-4 sm:px-8 py-6 sm:py-10">
         <div>
             <div class="flex text-stronger-interactive-border font-heading gap-5 text-sm">
                 <p>{{ blogPost.date }}</p> .
-                <p>{{ blogPost.readTime }} min de lecture</p>
+                <p>{{ $t('blog.readTime', { time: blogPost.readTime }) }}</p>
             </div>
         </div>
         <h1 class="text-4xl font-heading text-primary-text">{{ blogPost.title }}</h1>
         <p class="text-secondary-text font-body border-l-2 border-fixed-border pl-4 text-lg">{{ blogPost.description }}</p>
-        <div class="flex justify-center border border-fixed-border rounded-s h-100 w-190 background-custom">
-            <img :src="blogPost.image ? `/${blogPost.image}` : ''" alt="Blog" />
+        <div class="flex justify-center border border-fixed-border rounded-s aspect-video w-full max-w-190 background-custom">
+            <img class="h-full w-full object-cover" :src="blogPost.image ? `/blog-image-${locale}/${blogPost.image}` : ''" :alt="blogPost.title">
         </div>
         <article class="blog-content font-body">
             <ContentRenderer :value="blogPost" />
@@ -24,8 +24,48 @@
 
 <script setup>
     const route = useRoute()
-    const { data: blogPost } = await useAsyncData(route.path, () => queryCollection('blog').path(route.path).first())
-    useSeoMeta({ title: blogPost.title, description: blogPost.description })
+    const { locale } = useI18n()
+    const articleSlug = route.params.slug
+    const { data: blogPost } = await useAsyncData(route.path, () => {
+        const collection = locale.value === 'en' ? queryCollection('blogEn') : queryCollection('blog')
+        const articlePath = `/${locale.value === 'en' ? 'blog-en' : 'blog'}/${articleSlug}`
+        return collection.path(articlePath).first()
+    }, { watch: [locale] })
+    useSeoMeta({
+        title: () => blogPost.value?.title || '',
+        description: () => blogPost.value?.description || '',
+        ogTitle: () => blogPost.value?.title || '',
+        ogDescription: () => blogPost.value?.description || '',
+        ogType: 'article',
+        ogImage: () => blogPost.value?.image ? `/blog-image-${locale.value}/${blogPost.value.image}` : undefined,
+        articlePublishedTime: () => blogPost.value?.date ? new Date(blogPost.value.date).toISOString() : undefined,
+        articleSection: () => blogPost.value?.category || undefined,
+        articleTag: () => blogPost.value?.tags || undefined,
+        twitterCard: 'summary_large_image'
+    })
+
+    useHead(() => {
+        const post = blogPost.value
+        if (!post) return {}
+
+        return {
+            script: [{
+                type: 'application/ld+json',
+                children: JSON.stringify({
+                    '@context': 'https://schema.org',
+                    '@type': 'BlogPosting',
+                    headline: post.title,
+                    description: post.description,
+                    datePublished: new Date(post.date).toISOString(),
+                    author: {
+                        '@type': 'Person',
+                        name: 'Florentin Duyck'
+                    },
+                    image: post.image ? `/blog-image-${locale.value}/${post.image}` : undefined
+                })
+            }]
+        }
+    })
 </script>
 
 <style scoped>

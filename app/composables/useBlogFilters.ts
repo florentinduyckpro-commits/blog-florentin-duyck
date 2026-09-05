@@ -17,6 +17,9 @@ export function useBlogFilters(posts: Ref<BlogPost[]>) {
     let result = posts.value.filter(p => !p.draft)
 
     if (selectedCategory.value) {
+      if(selectedCategory.value === 'all') {
+        selectedCategory.value = null
+      }
       result = result.filter(p => p.category === selectedCategory.value)
     }
 
