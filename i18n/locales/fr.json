@@ -1,0 +1,17 @@
+{
+    "blog": {
+        "readmore": "Lire la suite →",
+        "name": "Blog de Florentin Duyck",  
+        "articles": "Articles",
+        "categories": "Catégories",
+        "allArticles": "Tous les articles",
+        "lastArticles": "Derniers articles",
+        "notfound": "Aucun article trouvé",
+        "switchToEnglish": "Passer en anglais",
+        "switchToFrench": "Passer en français",
+        "readTime": "{time} min de lecture",
+        "searchLabel": "Rechercher dans les articles",
+        "searchPlaceholder": "Rechercher dans les articles...",
+        "seoDescription": "Un blog technique consacré à Vue.js, Nuxt, le freelancing et la création de projets numériques."
+    }
+}
