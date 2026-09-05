@@ -26,7 +26,7 @@ export default defineNuxtConfig({
       ]
     }
   },
-  modules: ['@nuxt/content', '@nuxtjs/i18n', '@nuxt/eslint', '@vercel/analytics'],
+  modules: ['@nuxt/content', '@nuxtjs/i18n', '@nuxt/eslint', '@vercel/analytics', '@vercel/speed-insights'],
   css: ['~/assets/css/main.css'],
   vite: {
     plugins: [tailwindcss()]

@@ -2,6 +2,9 @@
   "name": "blog-florentin-duyck",
   "type": "module",
   "private": true,
+  "engines": {
+    "node": ">=22.19.0 <25"
+  },
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
@@ -17,6 +20,7 @@
     "@nuxtjs/i18n": "^10.6.0",
     "@tailwindcss/vite": "^4.3.3",
     "@vercel/analytics": "^2.0.1",
+    "@vercel/speed-insights": "^2.0.0",
     "better-sqlite3": "^13.0.3",
     "nuxt": "^4.5.2",
     "tailwindcss": "^4.3.3",
